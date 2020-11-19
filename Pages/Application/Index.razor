@@ -1,0 +1,64 @@
+﻿@page "/application"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+
+    <h1>Applications</h1>
+    <p class="mb-4">A list of all the applications that exists in the database.</p>
+    @if (applications == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table table-borderless">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Language</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var application in applications)
+                {
+                    <tr>
+                        <th scope="row">@application.Name</th>
+                        <td>@application.Language</td>
+                        <td>
+                            <NavLink role="button" href=@("/application/update/" + @application.Id)
+                                class="oi oi-pencil btn btn-warning my-1"></NavLink>
+                            <button @onclick=@(() => HandleDelete(application.Id)) class="oi oi-trash btn btn-danger"></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+@code {
+    private List<Application> applications = new List<Application>();
+    protected override async Task OnInitializedAsync()
+    {
+        applications = await Http.GetFromJsonAsync<List<Application>>("https://zbooksapi.azurewebsites.net/api/applications");
+    }
+
+    async Task HandleDelete(string id)
+    {
+        try
+        {
+            await Http.DeleteAsync($"https://zbooksapi.azurewebsites.net/api/applications/{id}");
+            applications.RemoveAll(item => item.Id == id);
+        }
+        catch (Exception ex)
+        {
+            System.Console.WriteLine(ex.Message);
+        }
+    }
+}
+
+@*
+    // Bugtracker
+
+    // Application //Ticket
+    //Bug //Request *@

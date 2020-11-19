@@ -1,0 +1,30 @@
+﻿@page "/application/create"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3 class="mb-4">Create Application</h3>
+<ApplicationForm Application="@applicationModel" OnValidSubmit="@HandleCreate" ButtonText="Create" />
+@if (error == true)
+{
+    <div class="alert alert-danger mt-4" role="alert">
+        Something went wrong! Application could not be created!
+    </div>
+}
+
+@code {
+    private Application applicationModel = new Application();
+    private bool error { get; set; }
+    async Task HandleCreate()
+    {
+        try
+        {
+            await Http.PostAsJsonAsync("https://zbooksapi.azurewebsites.net/api/applications", applicationModel);
+            NavigationManager.NavigateTo("/application");
+        }
+        catch (Exception ex)
+        {
+            error = true;
+            System.Console.WriteLine(ex.Message);
+        }
+    }
+}

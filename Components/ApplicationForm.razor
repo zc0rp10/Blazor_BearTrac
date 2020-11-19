@@ -1,0 +1,25 @@
+﻿<EditForm Model="@Application" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText class="d-none" id="id" @bind-Value="Application.Id" />
+    <div class="form-group">
+        <label for="name">Name</label>
+        <InputText class="form-control" id="name" @bind-Value="Application.Name" />
+    </div>
+    <div class="form-group">
+        <label for="author">Language</label>
+        <InputText class="form-control" id="author" @bind-Value="Application.Language" />
+    </div>
+    <button type="submit" class="btn btn-primary">@ButtonText</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public Application Application { get; set; }
+    [Parameter]
+    public string ButtonText { get; set; }
+    [Parameter]
+    public EventCallback OnValidSubmit { get; set; }
+
+}

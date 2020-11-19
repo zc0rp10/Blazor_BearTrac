@@ -1,0 +1,38 @@
+﻿@page "/application/update/{text}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3 class="mb-4">Update Application</h3>
+<ApplicationForm Application="@applicationModel" OnValidSubmit="@HandleUpdate" ButtonText="Update" />
+@if (error == true)
+{
+    <div class="alert alert-danger mt-4" role="alert">
+        Something went wrong! Application could not be updated!
+    </div>
+}
+
+@code{
+    [Parameter]
+    public string Text { get; set; }
+    private Application applicationModel = new Application();
+    private bool error { get; set; }
+
+     protected override async Task OnParametersSetAsync()
+    {
+        applicationModel = await Http.GetFromJsonAsync<Application>($"https://zbooksapi.azurewebsites.net/api/applications/{Text}");
+    }
+
+    async Task HandleUpdate()
+    {
+        try
+        {
+            await Http.PutAsJsonAsync($"https://zbooksapi.azurewebsites.net/api/applications/{Text}", applicationModel);
+            NavigationManager.NavigateTo("/application");
+        }
+        catch (Exception ex)
+        {
+            error = true;
+            System.Console.WriteLine(ex.Message);
+        }
+    }
+}
