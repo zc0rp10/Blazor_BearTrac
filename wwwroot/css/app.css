@@ -1,7 +1,8 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    background-color: #edf2f7;
 }
 
 a, .btn-link {
@@ -25,14 +26,16 @@ app {
     display: flex;
     align-items: center;
 }
+    svg {
+        height: 24px;
+    }
 
 .main {
     flex: 1;
 }
 
     .main .top-row {
-        background-color: #f7f7f7;
-        border-bottom: 1px solid #d6d5d5;
+        background-color: #ffffff;
         justify-content: flex-end;
     }
 
@@ -47,7 +50,7 @@ app {
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-color: #2d3748;
 }
 
     .sidebar .top-row {
@@ -55,7 +58,10 @@ app {
     }
 
     .sidebar .navbar-brand {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
     }
 
     .sidebar .oi {
@@ -88,17 +94,18 @@ app {
         }
 
             .sidebar .nav-item a.active {
-                background-color: rgba(255,255,255,0.25);
-                color: white;
+                color: #e9ecef;
+                background: linear-gradient(90deg,rgba(59,125,221,.1),rgba(59,125,221,.0875) 50%,transparent);
             }
 
             .sidebar .nav-item a:hover {
-                background-color: rgba(255,255,255,0.1);
                 color: white;
+                margin-left: .1rem;
+                transition: .2s;
             }
 
 .content {
-    padding-top: 1.1rem;
+    padding-top: 1.5rem;
 }
 
 .navbar-toggler {

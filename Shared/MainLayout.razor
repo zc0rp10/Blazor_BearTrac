@@ -5,11 +5,24 @@
 </div>
 
 <div class="main">
-    <div class="top-row px-4">
-        <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
+    <div class="top-row px-4 shadow-sm">
+        <span class="oi oi-menu"></span> @* TODO: Open close sidebar *@
+        <div class="input-group input-group-sm ml-3 col-3">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                aria-describedby="basic-addon1"> @* TODO: Implement Search *@
+            <div class="input-group-append">
+                <span class="input-group-text"><span class="oi oi-magnifying-glass"></span></span>
+            </div>
+        </div>
+        <span class="oi oi-bell ml-md-auto"></span> @* TODO: Implement Notification *@
+        <span class="oi oi-chat ml-4"></span> @* TODO: Implement Messages *@
     </div>
 
     <div class="content px-4">
-        @Body
+        <div class="card shadow-sm">
+            <div class="card-body">
+                @Body
+            </div>
+        </div>
     </div>
 </div>
