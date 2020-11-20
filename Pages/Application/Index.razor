@@ -17,6 +17,7 @@ else
                     <th scope="col">Name</th>
                     <th scope="col">Application Type</th>
                     <th scope="col">Language</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@ else
                         <th scope="row">@application.Name</th>
                         <td>@application.Type</td>
                         <td>@application.Language</td>
+                        <td>@application.Description</td>
                         <td>
                             <NavLink role="button" href=@("/application/update/" + @application.Id)
                                 class="oi oi-pencil btn btn-warning my-1"></NavLink>

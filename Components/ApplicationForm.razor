@@ -10,13 +10,20 @@
         <label for="name">Name</label>
         <InputText class="form-control" id="name" @bind-Value="Application.Name" />
     </div>
-     <div class="form-group">
+    <div class="row">
+     <div class="form-group col-md-6">
         <label for="type">Application Type</label>
         <InputText class="form-control" id="type" @bind-Value="Application.Type" />
     </div>
+    <div class="form-group col-md-6">
+        <label for="language">Language</label>
+        <InputText class="form-control" id="language" @bind-Value="Application.Language" />
+    </div>
+    </div>
     <div class="form-group">
-        <label for="author">Language</label>
-        <InputText class="form-control" id="author" @bind-Value="Application.Language" />
+        <label for="description">Description</label>
+        <InputTextArea class="form-control" id="description" @bind-Value="Application.Description"
+            placeholder="Leave a comment.." />
     </div>
     <button type="submit" class="btn btn-primary">@ButtonText</button>
     <button class="btn btn-success" @onclick="NavigateBack">Back</button>
