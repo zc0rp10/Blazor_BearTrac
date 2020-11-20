@@ -1,0 +1,73 @@
+﻿@page "/ticket"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h1>Tickets</h1>
+<p class="mb-4">A list of all the tickets that exists in the database.</p>
+@if (tickets == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="table-responsive-xl">
+        <table class="table table-borderless">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Application</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Ticket Type</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ticket in tickets)
+                {
+                    <tr>
+                        <th scope="row">@ticket.Name</th>
+                        <td>@ticket.Application</td>
+                        <td>@ticket.Description</td>
+                        <td>@ticket.Status</td>
+                        <td>@ticket.Type</td>
+                        <td>
+                            <NavLink role="button" href=@("/ticket/update/" + @ticket.Id)
+                                class="oi oi-pencil btn btn-warning my-1"></NavLink>
+                            <button @onclick=@(() => HandleDelete(ticket.Id)) class="oi oi-trash btn btn-danger"></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="/ticket/create" class="btn btn-primary">New Ticket</a>
+    </div>
+}
+
+@code {
+    private List<Ticket> tickets = new List<Ticket>();
+    protected override async Task OnInitializedAsync()
+    {
+        tickets = await Http.GetFromJsonAsync<List<Ticket>>("https://zbooksapi.azurewebsites.net/api/tickets");
+        tickets.OrderBy(ticket => ticket.Name); //TODO: Change to Application
+    }
+
+    async Task HandleDelete(string id)
+    {
+        try
+        {
+            await Http.DeleteAsync($"https://zbooksapi.azurewebsites.net/api/tickets/{id}");
+            tickets.RemoveAll(item => item.Id == id);
+        }
+        catch (Exception ex)
+        {
+            System.Console.WriteLine(ex.Message);
+        }
+    }
+}
+
+@*
+    // Bugtracker
+
+    // Ticket //Ticket
+    //Bug //Request *@

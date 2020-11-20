@@ -1,0 +1,38 @@
+﻿@page "/ticket/update/{text}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3 class="mb-4">Update Ticket</h3>
+<TicketForm Ticket="@ticketModel" OnValidSubmit="@HandleUpdate" ButtonText="Update" />
+@if (error == true)
+{
+    <div class="alert alert-danger mt-4" role="alert">
+        Something went wrong! Ticket could not be updated!
+    </div>
+}
+
+@code{
+    [Parameter]
+    public string Text { get; set; }
+    private Ticket ticketModel = new Ticket();
+    private bool error { get; set; }
+
+     protected override async Task OnParametersSetAsync()
+    {
+        ticketModel = await Http.GetFromJsonAsync<Ticket>($"https://zbooksapi.azurewebsites.net/api/tickets/{Text}");
+    }
+
+    async Task HandleUpdate()
+    {
+        try
+        {
+            await Http.PutAsJsonAsync($"https://zbooksapi.azurewebsites.net/api/tickets/{Text}", ticketModel);
+            NavigationManager.NavigateTo("/ticket");
+        }
+        catch (Exception ex)
+        {
+            error = true;
+            System.Console.WriteLine(ex.Message);
+        }
+    }
+}

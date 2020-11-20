@@ -1,4 +1,7 @@
-﻿<EditForm Model="@Application" OnValidSubmit="@OnValidSubmit">
+﻿@inject NavigationManager NavigationManager
+
+
+<EditForm Model="@Application" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -7,11 +10,16 @@
         <label for="name">Name</label>
         <InputText class="form-control" id="name" @bind-Value="Application.Name" />
     </div>
+     <div class="form-group">
+        <label for="type">Application Type</label>
+        <InputText class="form-control" id="type" @bind-Value="Application.Type" />
+    </div>
     <div class="form-group">
         <label for="author">Language</label>
         <InputText class="form-control" id="author" @bind-Value="Application.Language" />
     </div>
     <button type="submit" class="btn btn-primary">@ButtonText</button>
+    <button class="btn btn-success" @onclick="NavigateBack">Back</button>
 </EditForm>
 
 @code {
@@ -21,5 +29,10 @@
     public string ButtonText { get; set; }
     [Parameter]
     public EventCallback OnValidSubmit { get; set; }
+
+    private void NavigateBack()
+    {
+        NavigationManager.NavigateTo("/application");
+    }
 
 }

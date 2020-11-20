@@ -2,19 +2,20 @@
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 
-
-    <h1>Applications</h1>
-    <p class="mb-4">A list of all the applications that exists in the database.</p>
-    @if (applications == null)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else
-    {
+<h1>Applications</h1>
+<p class="mb-4">A list of all the applications that exists in the database.</p>
+@if (applications == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="table-responsive-xl">
         <table class="table table-borderless">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Name</th>
+                    <th scope="col">Application Type</th>
                     <th scope="col">Language</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -24,6 +25,7 @@
                 {
                     <tr>
                         <th scope="row">@application.Name</th>
+                        <td>@application.Type</td>
                         <td>@application.Language</td>
                         <td>
                             <NavLink role="button" href=@("/application/update/" + @application.Id)
@@ -34,7 +36,9 @@
                 }
             </tbody>
         </table>
-    }
+        <a href="/application/create" class="btn btn-primary">New Application</a>
+    </div>
+}
 
 @code {
     private List<Application> applications = new List<Application>();
