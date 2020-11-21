@@ -1,3 +1,4 @@
+![Deploy to GitHub Pages](https://github.com/zc0rp10/Blazor_BearTrac/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)
 # Blazor Bear Trac
 The frontend for my Bear Trac application built with .NET Blazor WebAssembly.
 
