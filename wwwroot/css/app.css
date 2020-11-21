@@ -64,6 +64,10 @@ app {
         align-items: center;
     }
 
+    .sidebar .navbar-brand a:hover {
+        text-decoration: none;
+    }
+
     .sidebar .oi {
         width: 2rem;
         font-size: 1.1rem;
@@ -105,7 +109,8 @@ app {
             }
 
 .content {
-    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .navbar-toggler {
@@ -172,6 +177,7 @@ app {
     .main .top-row {
         position: sticky;
         top: 0;
+        z-index: 99;
     }
 
     .main > div {

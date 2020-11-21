@@ -15,9 +15,9 @@ else
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Application Type</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Language</th>
-                    <th scope="col">Description</th>
+                    @* <th scope="col">Description</th> *@
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -28,7 +28,7 @@ else
                         <th scope="row">@application.Name</th>
                         <td>@application.Type</td>
                         <td>@application.Language</td>
-                        <td>@application.Description</td>
+                        @* <td>@application.Description</td> *@
                         <td>
                             <NavLink role="button" href=@("/application/update/" + @application.Id)
                                 class="oi oi-pencil btn btn-warning my-1"></NavLink>
@@ -47,6 +47,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         applications = await Http.GetFromJsonAsync<List<Application>>("https://zbooksapi.azurewebsites.net/api/applications");
+        applications.OrderBy(app => app.Name);
     }
 
     async Task HandleDelete(string id)

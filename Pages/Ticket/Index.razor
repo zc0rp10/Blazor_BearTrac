@@ -18,7 +18,7 @@ else
                     <th scope="col">Application</th>
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Ticket Type</th>
+                    <th scope="col" style="white-space: nowrap">Ticket Type</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -49,7 +49,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         tickets = await Http.GetFromJsonAsync<List<Ticket>>("https://zbooksapi.azurewebsites.net/api/tickets");
-        tickets.OrderBy(ticket => ticket.Name); //TODO: Change to Application
+        tickets.OrderBy(ticket => ticket.Application);
     }
 
     async Task HandleDelete(string id)
