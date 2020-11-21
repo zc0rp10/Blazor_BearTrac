@@ -65,7 +65,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        applications = await Http.GetFromJsonAsync<List<Application>>("https://localhost:5501/api/applications");
+        applications = await Http.GetFromJsonAsync<List<Application>>("https://zbooksapi.azurewebsites.net/api/applications");
     }
 
     private void NavigateBack()
