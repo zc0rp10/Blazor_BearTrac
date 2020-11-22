@@ -15,23 +15,23 @@ else
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Name</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Application</th>
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
-                    <th scope="col" style="white-space: nowrap">Ticket Type</th>
-                    <th scope="col">Actions</th>
+                    <th class="text-right" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var ticket in tickets)
                 {
                     <tr>
-                        <th scope="row">@ticket.Name</th>
+                        <th scope="row"><span class="d-inline-block text-truncate" style="max-width: 200px;">@ticket.Name</span></th>
+                        <TicketTypeTd Ticket="ticket"/>
                         <td>@ticket.Application</td>
-                        <td>@ticket.Description</td>
+                        <td><span class="d-inline-block text-truncate" style="max-width: 850px;">@ticket.Description</span></td>
                         <td>@ticket.Status</td>
-                        <td>@ticket.Type</td>
-                        <td>
+                        <td class="text-right">
                             <NavLink role="button" href=@("/ticket/update/" + @ticket.Id)
                                 class="oi oi-pencil btn btn-warning my-1"></NavLink>
                             <button @onclick=@(() => HandleDelete(ticket.Id)) class="oi oi-trash btn btn-danger"></button>
