@@ -1,0 +1,88 @@
+<div class="row text-center">
+    <div class="col-md-6 col-lg-6 col-xl-4 py-2">
+        <div class="card shadow-sm border-0">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    Tickets by Type
+                </h4>
+            </div>
+            <div class="card-body">
+                <PieChart ValueArray="typeValArr" LabelArray="typeLabelArr" DoughnutChart="true" />
+            </div>
+            <div class="card-footer d-flex justify-content-around">
+                <span>Bugs: @typeValArr[0]</span>
+                <span>Requests: @(typeValArr[1])</span>
+                <span>Total: @(typeValArr[0] + typeValArr[1])</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4 col-xl-4 py-2">
+        <div class="card shadow-sm border-0">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    Tickets by Status
+                </h4>
+            </div>
+            <div class="card-body">
+                <PieChart ValueArray="statusValArr" LabelArray="statusLabelArr" DoughnutChart="false" />
+            </div>
+            <div class="card-footer d-flex justify-content-around">
+                <span>Open: @(statusValArr[0] + statusValArr[1])</span>
+                <span>Closed: @(statusValArr[2])</span>
+                <span>Total: @(statusValArr[0] + statusValArr[1] + statusValArr[2])</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4 col-xl-4 py-2">
+
+        <div class="card shadow-sm border-0">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    Tickets by Priority
+                </h4>
+            </div>
+            <div class="card-body">
+                <PieChart ValueArray="priorityValArr" LabelArray="priorityLabelArr" DoughnutChart="true" />
+            </div>
+            <div class="card-footer d-flex justify-content-around">
+                <span>Low: @priorityValArr[0]</span>
+                <span>Medium: @priorityValArr[1]</span>
+                <span>High: @priorityValArr[2]</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public List<Ticket> Tickets { get; set; }
+    public int[] statusValArr;
+    public string[] statusLabelArr = { Status.New.ToString(), Status.InProgress.ToString(), Status.Completed.ToString() };
+
+    public int[] typeValArr;
+    public string[] typeLabelArr = { Models.Type.Bug.ToString(), Models.Type.Request.ToString() };
+
+    public int[] priorityValArr;
+    public string[] priorityLabelArr = { Priority.Low.ToString(), Priority.Medium.ToString(), Priority.High.ToString() };
+
+
+    protected override void OnInitialized()
+    {
+        statusValArr = new int[] {
+            Tickets.Count(x => x.Status == Status.New),
+            Tickets.Count(x => x.Status == Status.InProgress),
+            Tickets.Count(x => x.Status == Status.Completed)
+        };
+
+        typeValArr = new int[] {
+            Tickets.Count(x => x.Type == Models.Type.Bug),
+            Tickets.Count(x => x.Type == Models.Type.Request)
+        };
+
+        priorityValArr = new int[] {
+            Tickets.Count(x => x.Priority == Priority.Low),
+            Tickets.Count(x => x.Priority == Priority.Medium),
+            Tickets.Count(x => x.Priority == Priority.High)
+        };
+    }
+}

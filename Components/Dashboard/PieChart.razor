@@ -1,0 +1,50 @@
+<Chart Config="_chartConfig"></Chart>
+
+@code {
+    [Parameter]
+    public int[] ValueArray { get; set; }
+    [Parameter]
+    public string[] LabelArray { get; set; }
+    [Parameter]
+    public bool DoughnutChart { get; set; }
+    private PieConfig _chartConfig;
+
+    protected override void OnInitialized()
+    {
+        MakeChart(ValueArray, LabelArray, DoughnutChart);
+    }
+
+    private void MakeChart(int[] chartValues, string[] chartLabels, bool chartType)
+    {
+
+        _chartConfig = new PieConfig(chartType)
+        {
+            Options = new PieOptions
+            {
+                Legend = new Legend
+                {
+                    Position = Position.Bottom
+                },
+                Responsive = true,
+
+            }
+        };
+
+        foreach (string label in chartLabels)
+        {
+            _chartConfig.Data.Labels.Add(label);
+        }
+
+        PieDataset<int> dataset = new PieDataset<int>(chartValues)
+        {
+            BackgroundColor = new[]
+            {
+                ColorUtil.ColorHexString(255, 99, 132), // Slice 1 aka "Red"
+                ColorUtil.ColorHexString(255, 205, 86), // Slice 2 aka "Yellow"
+                ColorUtil.ColorHexString(54, 162, 235), // Slice 4 aka "Blue"
+            }
+        };
+
+        _chartConfig.Data.Datasets.Add(dataset);
+    }
+}

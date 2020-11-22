@@ -1,0 +1,22 @@
+@inject HttpClient Http
+
+<h3 class="mb-4"><strong>Analytics</strong> Dashboard</h3>
+<section>
+    @if (tickets == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+       <TopRow Tickets="tickets" />
+    }
+</section>
+
+@code {
+    //By: Priority, Type, Status, Application?
+    List<Ticket> tickets;
+    protected override async Task OnInitializedAsync()
+    {
+        tickets = await Http.GetFromJsonAsync<List<Ticket>>("https://zbooksapi.azurewebsites.net/api/tickets");
+    }
+}

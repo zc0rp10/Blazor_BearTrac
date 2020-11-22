@@ -8,6 +8,7 @@ namespace BlazorBearTrac.Models
         public string Application { get; set; } //TODO: Change return type to Application
         public Type Type { get; set; }
         public Status Status { get; set; }
+        public Priority Priority { get; set; }
     }
 
     public enum Type
@@ -21,5 +22,13 @@ namespace BlazorBearTrac.Models
         New,
         InProgress,
         Completed,
+    }
+
+    public enum Priority
+    {
+        Low,
+        Medium,
+        High
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
 
 <div class="sidebar">
     <NavMenu />
@@ -17,12 +18,18 @@
         <span class="oi oi-bell ml-md-auto"></span> @* TODO: Implement Notification *@
         <span class="oi oi-chat ml-4"></span> @* TODO: Implement Messages *@
     </div>
-
     <div class="content px-4">
-        <div class="card shadow-sm">
-            <div class="card-body">
-                @Body
+        @if (NavigationManager.Uri != NavigationManager.BaseUri)
+        {
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    @Body
+                </div>
             </div>
+        }
+        else
+        {
+            @Body
+        }
         </div>
     </div>
-</div>

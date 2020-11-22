@@ -1,0 +1,15 @@
+<td class="text-center">
+    @if (Ticket.Type == Models.Type.Bug)
+    {
+        <span class="badge badge-danger"><span class="oi oi-bug" style="top:-0.5px;left:0.5px;"></span></span>
+    }
+    else
+    {
+        <span class="badge badge-info"><span class="oi oi-plus"></span></span>
+    }
+</td>
+
+@code {
+    [Parameter]
+    public Ticket Ticket { get; set; }
+}
