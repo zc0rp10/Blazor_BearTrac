@@ -63,7 +63,7 @@
     public string[] typeLabelArr = { Models.Type.Bug.ToString(), Models.Type.Request.ToString() };
 
     public int[] priorityValArr;
-    public string[] priorityLabelArr = { Priority.Low.ToString(), Priority.Medium.ToString(), Priority.High.ToString() };
+    public string[] priorityLabelArr = { Priority.High.ToString(), Priority.Medium.ToString(), Priority.Low.ToString() };
 
 
     protected override void OnInitialized()
@@ -80,9 +80,9 @@
         };
 
         priorityValArr = new int[] {
-            Tickets.Count(x => x.Priority == Priority.Low),
+            Tickets.Count(x => x.Priority == Priority.High),
             Tickets.Count(x => x.Priority == Priority.Medium),
-            Tickets.Count(x => x.Priority == Priority.High)
+            Tickets.Count(x => x.Priority == Priority.Low)
         };
     }
 }
