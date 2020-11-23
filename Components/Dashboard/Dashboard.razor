@@ -4,12 +4,15 @@
 <section>
     @if (tickets == null)
     {
-        <p><em>Loading...</em></p>
+        <div class="d-flex align-items-center col-sm-2">
+            <strong>Loading...</strong>
+            <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+        </div>
     }
     else
     {
-       <TopRow Tickets="tickets" />
-       <BottomRow Tickets="tickets" />
+        <TopRow Tickets="tickets" />
+        <BottomRow Tickets="tickets" />
     }
 </section>
 
