@@ -31,11 +31,7 @@ app {
     }
 
 table td {
-    padding: 0.20rem!important;
-}
-
-thead th {
-    margin-bottom: .55rem!important;
+    padding: 0.20rem 0.75rem!important;
 }
 
 .main {
