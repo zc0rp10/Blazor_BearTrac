@@ -18,6 +18,7 @@
     {
         try
         {
+            ticketModel.Date = DateTime.UtcNow;
             await Http.PostAsJsonAsync("https://zbooksapi.azurewebsites.net/api/tickets", ticketModel);
             NavigationManager.NavigateTo("/ticket");
         }

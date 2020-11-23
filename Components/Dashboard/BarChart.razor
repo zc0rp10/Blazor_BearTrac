@@ -1,0 +1,83 @@
+<div class="">
+    <p class="text-left">Ticket Trends</p>
+</div>
+<Chart Config="@_config" />
+
+@code {
+    [Parameter]
+    public int[] BugValArray { get; set; }
+    [Parameter]
+    public int[] ReqValArray { get; set; }
+    private BarConfig _config;
+    protected override void OnInitialized()
+    {
+        MakeChart(BugValArray, ReqValArray);
+        //ValueArray, LabelArray,
+    }
+
+    private void MakeChart(int[] bugValArr, int[] reqValArr)
+    {
+        _config = new BarConfig
+        {
+            Options = new BarOptions
+            {
+                Legend = new Legend
+                {
+                    Display = false
+                },
+                Scales = new BarScales
+                {
+
+                    XAxes = new List<CartesianAxis>
+                    {
+
+                        new BarCategoryAxis
+{
+BarPercentage = 0.5,
+BarThickness = BarThickness.Flex,
+Stacked = true
+},
+
+                    },
+                    YAxes = new List<CartesianAxis>
+                    {
+                        new BarLinearCartesianAxis
+                        {
+                            Ticks = new LinearCartesianTicks
+                            {
+                                BeginAtZero = true,
+                                StepSize = 1,
+                                },
+                            GridLines = new GridLines
+                            {
+                            Display = false,
+                            }
+                            }
+                    }
+                }
+            }
+        };
+
+        BarDataset<int> bugDataset = new BarDataset<int>
+        {
+            Label = "Bugs",
+            BackgroundColor = "#dc3545"
+        };
+        bugDataset.AddRange(bugValArr);
+
+        BarDataset<int> reqDataset = new BarDataset<int>
+        {
+            Label = "Requests",
+            BackgroundColor = "#ffc107"
+        };
+        reqDataset.AddRange(reqValArr);
+
+        List<string> labelList = new List<string> { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
+            "Dec" };
+        labelList.ForEach(label => _config.Data.Labels.Add(label));
+
+        _config.Data.Datasets.Add(bugDataset);
+        _config.Data.Datasets.Add(reqDataset);
+
+    }
+}

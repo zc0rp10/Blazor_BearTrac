@@ -1,0 +1,51 @@
+<div class="row text-center">
+    <div class="col-md-6 col-lg-6 col-xl-6 py-2">
+        <div class="card shadow-sm border-0">
+            <div class="card-body w-100">
+                @* <BarChart ValueArray="typeValArr" LabelArray="typeLabelArr" DoughnutChart="true" /> *@
+                <BarChart BugValArray="bugTrendValArr" ReqValArray="reqTrendValArr" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public List<Ticket> Tickets { get; set; }
+
+    public int[] bugTrendValArr;
+    public int[] reqTrendValArr;
+
+    protected override void OnInitialized()
+    {
+        bugTrendValArr = new int[] {
+            Tickets.Count(x => x.Date.Month == 1 && x.Type == Models.Type.Bug),
+            Tickets.Count(x => x.Date.Month == 2 && x.Type == Models.Type.Bug),
+            Tickets.Count(x => x.Date.Month == 3 && x.Type == Models.Type.Bug),
+            Tickets.Count(x => x.Date.Month == 4 && x.Type == Models.Type.Bug),
+            Tickets.Count(x => x.Date.Month == 5 && x.Type == Models.Type.Bug),
+            Tickets.Count(x => x.Date.Month == 6 && x.Type == Models.Type.Bug),
+            Tickets.Count(x => x.Date.Month == 7 && x.Type == Models.Type.Bug),
+            Tickets.Count(x => x.Date.Month == 8 && x.Type == Models.Type.Bug),
+            Tickets.Count(x => x.Date.Month == 9 && x.Type == Models.Type.Bug),
+            Tickets.Count(x => x.Date.Month == 10 && x.Type == Models.Type.Bug),
+            Tickets.Count(x => x.Date.Month == 11 && x.Type == Models.Type.Bug),
+            Tickets.Count(x => x.Date.Month == 12 && x.Type == Models.Type.Bug)
+        };
+
+        reqTrendValArr = new int[] {
+            Tickets.Count(x => x.Date.Month == 1 && x.Type == Models.Type.Request),
+            Tickets.Count(x => x.Date.Month == 2 && x.Type == Models.Type.Request),
+            Tickets.Count(x => x.Date.Month == 3 && x.Type == Models.Type.Request),
+            Tickets.Count(x => x.Date.Month == 4 && x.Type == Models.Type.Request),
+            Tickets.Count(x => x.Date.Month == 5 && x.Type == Models.Type.Request),
+            Tickets.Count(x => x.Date.Month == 6 && x.Type == Models.Type.Request),
+            Tickets.Count(x => x.Date.Month == 7 && x.Type == Models.Type.Request),
+            Tickets.Count(x => x.Date.Month == 8 && x.Type == Models.Type.Request),
+            Tickets.Count(x => x.Date.Month == 9 && x.Type == Models.Type.Request),
+            Tickets.Count(x => x.Date.Month == 10 && x.Type == Models.Type.Request),
+            Tickets.Count(x => x.Date.Month == 11 && x.Type == Models.Type.Request),
+            Tickets.Count(x => x.Date.Month == 12 && x.Type == Models.Type.Request)
+            };
+    }
+}

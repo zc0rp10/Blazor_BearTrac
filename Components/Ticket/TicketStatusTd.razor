@@ -1,0 +1,21 @@
+<td class="text-white">
+@if (Status == Models.Status.New)
+{
+    <span class="badge bg-primary">New</span>
+}
+@if (Status == Models.Status.InProgress)
+
+{
+    <span class="badge bg-warning">In Progress</span>
+}
+@if (Status == Models.Status.Completed)
+
+{
+    <span class="badge bg-success">Completed</span>
+}
+</td>
+
+@code {
+    [Parameter]
+    public Status Status { get; set; }
+}

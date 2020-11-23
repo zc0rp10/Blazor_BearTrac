@@ -9,7 +9,7 @@
             <div class="card-body">
                 <PieChart ValueArray="typeValArr" LabelArray="typeLabelArr" DoughnutChart="true" />
             </div>
-            <div class="card-footer d-flex justify-content-around">
+            <div class="card-body d-flex justify-content-around">
                 <span>Bugs: @typeValArr[0]</span>
                 <span>Requests: @(typeValArr[1])</span>
                 <span>Total: @(typeValArr[0] + typeValArr[1])</span>
@@ -26,7 +26,7 @@
             <div class="card-body">
                 <PieChart ValueArray="statusValArr" LabelArray="statusLabelArr" DoughnutChart="false" />
             </div>
-            <div class="card-footer d-flex justify-content-around">
+            <div class="card-body d-flex justify-content-around">
                 <span>Open: @(statusValArr[0] + statusValArr[1])</span>
                 <span>Closed: @(statusValArr[2])</span>
                 <span>Total: @(statusValArr[0] + statusValArr[1] + statusValArr[2])</span>
@@ -44,7 +44,7 @@
             <div class="card-body">
                 <PieChart ValueArray="priorityValArr" LabelArray="priorityLabelArr" DoughnutChart="true" />
             </div>
-            <div class="card-footer d-flex justify-content-around">
+            <div class="card-body d-flex justify-content-around">
                 <span>Low: @priorityValArr[0]</span>
                 <span>Medium: @priorityValArr[1]</span>
                 <span>High: @priorityValArr[2]</span>

@@ -1,3 +1,5 @@
+using System;
+
 namespace BlazorBearTrac.Models
 {
     public class Ticket
@@ -9,6 +11,7 @@ namespace BlazorBearTrac.Models
         public Type Type { get; set; }
         public Status Status { get; set; }
         public Priority Priority { get; set; }
+        public DateTime Date { get; set; }
     }
 
     public enum Type
