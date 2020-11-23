@@ -30,6 +30,14 @@ app {
         height: 24px;
     }
 
+table td {
+    padding: 0.20rem!important;
+}
+
+thead th {
+    margin-bottom: .55rem!important;
+}
+
 .main {
     flex: 1;
 }
