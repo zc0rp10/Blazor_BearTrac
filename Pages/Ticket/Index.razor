@@ -36,7 +36,7 @@ else
                         <td>@ticket.Priority</td>
                         <td>@ticket.Date.ToString("yyyy-MM-dd")</td>
                         <td class="text-right">
-                            <NavLink role="button" href=@("/ticket/update/" + @ticket.Id)
+                            <NavLink role="button" href=@("ticket/update/" + @ticket.Id)
                                 class="oi oi-pencil btn btn-warning my-1"></NavLink>
                             <button @onclick=@(() => HandleDelete(ticket.Id)) class="oi oi-trash btn btn-danger"></button>
                         </td>
@@ -44,7 +44,7 @@ else
                 }
             </tbody>
         </table>
-        <a href="/ticket/create" class="btn btn-primary">New Ticket</a>
+        <a href="ticket/create" class="btn btn-primary">New Ticket</a>
     </div>
 }
 
