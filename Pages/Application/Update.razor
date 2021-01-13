@@ -27,7 +27,7 @@
         try
         {
             await Http.PutAsJsonAsync($"https://zbooksapi.azurewebsites.net/api/applications/{Text}", applicationModel);
-            NavigationManager.NavigateTo("/application");
+            NavigationManager.NavigateTo("application");
         }
         catch (Exception ex)
         {

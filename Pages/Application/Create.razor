@@ -19,7 +19,7 @@
         try
         {
             await Http.PostAsJsonAsync("https://zbooksapi.azurewebsites.net/api/applications", applicationModel);
-            NavigationManager.NavigateTo("/application");
+            NavigationManager.NavigateTo("application");
         }
         catch (Exception ex)
         {
