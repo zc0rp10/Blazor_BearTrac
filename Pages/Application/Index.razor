@@ -30,7 +30,7 @@ else
                         <td>@application.Language</td>
                         @* <td>@application.Description</td> *@
                         <td class="text-right">
-                            <NavLink role="button" href=@("/application/update/" + @application.Id)
+                            <NavLink role="button" href=@("application/update/" + @application.Id)
                                 class="oi oi-pencil btn btn-warning my-1"></NavLink>
                             <button @onclick=@(() => HandleDelete(application.Id)) class="oi oi-trash btn btn-danger"></button>
                         </td>
@@ -38,7 +38,7 @@ else
                 }
             </tbody>
         </table>
-        <a href="/application/create" class="btn btn-primary">New Application</a>
+        <a href="application/create" class="btn btn-primary">New Application</a>
     </div>
 }
 
